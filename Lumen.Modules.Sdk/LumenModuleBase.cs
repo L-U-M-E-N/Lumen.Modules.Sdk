@@ -34,6 +34,6 @@ namespace Lumen.Modules.Sdk {
         public static void SetupServices(LumenModuleRunsOnFlag currentEnv, IServiceCollection serviceCollection, string? postgresConnectionString) {
             throw new NotImplementedException();
         }
-        public abstract Type GetDatabaseContextType();
+        public abstract Type? GetDatabaseContextType();
     }
 }
