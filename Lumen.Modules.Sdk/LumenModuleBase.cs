@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 
 namespace Lumen.Modules.Sdk {
     public abstract class LumenModuleBase {
@@ -29,9 +30,10 @@ namespace Lumen.Modules.Sdk {
         // Scheduled events
         public abstract bool ShouldRunNow(LumenModuleRunsOnFlag currentEnv);
 
-        // Database-related methods
-        public abstract bool IsUsingDatabase(LumenModuleRunsOnFlag currentEnv);
-        public abstract Type GetModuleDatabaseContext();
-        public abstract string GetModuleDatabaseContextSchemaName();
+        // Setup DI/DBContext/...
+        public static void SetupServices(LumenModuleRunsOnFlag currentEnv, IServiceCollection serviceCollection, string? postgresConnectionString) {
+            throw new NotImplementedException();
+        }
+        public abstract Type GetDatabaseContextType();
     }
 }
