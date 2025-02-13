@@ -3,11 +3,13 @@ using Microsoft.Extensions.Logging;
 
 namespace Lumen.Modules.Sdk {
     public abstract class LumenModuleBase {
-        private readonly LumenModuleRunsOnFlag runsOn;
+        protected readonly LumenModuleRunsOnFlag runsOn;
+        protected readonly IEnumerable<ConfigEntry> configEntries;
         protected readonly ILogger<LumenModuleBase> logger;
 
-        protected LumenModuleBase(LumenModuleRunsOnFlag runsOn, ILogger<LumenModuleBase> logger) {
+        protected LumenModuleBase(LumenModuleRunsOnFlag runsOn, IEnumerable<ConfigEntry> configEntries, ILogger<LumenModuleBase> logger) {
             this.runsOn = runsOn;
+            this.configEntries = configEntries;
             this.logger = logger;
         }
 
