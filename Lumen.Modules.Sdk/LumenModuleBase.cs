@@ -3,25 +3,14 @@ using Microsoft.Extensions.Logging;
 
 namespace Lumen.Modules.Sdk {
     public abstract class LumenModuleBase {
-        protected readonly LumenModuleRunsOnFlag runsOn;
         protected readonly IEnumerable<ConfigEntry> configEntries;
         protected readonly ILogger<LumenModuleBase> logger;
+        protected readonly IServiceProvider provider;
 
-        protected LumenModuleBase(LumenModuleRunsOnFlag runsOn, IEnumerable<ConfigEntry> configEntries, ILogger<LumenModuleBase> logger) {
-            this.runsOn = runsOn;
+        protected LumenModuleBase(IEnumerable<ConfigEntry> configEntries, ILogger<LumenModuleBase> logger, IServiceProvider provider) {
             this.configEntries = configEntries;
             this.logger = logger;
-        }
-
-        // Generic methods
-        public bool IsAPIModule() {
-            return runsOn.HasFlag(LumenModuleRunsOnFlag.API);
-        }
-        public bool IsUIModule() {
-            return runsOn.HasFlag(LumenModuleRunsOnFlag.UI);
-        }
-        public bool IsWorkerModule() {
-            return runsOn.HasFlag(LumenModuleRunsOnFlag.Worker);
+            this.provider = provider;
         }
 
         // Standard event loop methods
