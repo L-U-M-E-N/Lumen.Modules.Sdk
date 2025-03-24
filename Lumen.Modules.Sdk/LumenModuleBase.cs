@@ -16,10 +16,10 @@ namespace Lumen.Modules.Sdk {
         // Standard event loop methods
         public abstract Task InitAsync(LumenModuleRunsOnFlag currentEnv);
         public abstract Task ShutdownAsync();
-        public abstract Task RunAsync(LumenModuleRunsOnFlag currentEnv);
+        public abstract Task RunAsync(LumenModuleRunsOnFlag currentEnv, DateTime date);
 
         // Scheduled events
-        public abstract bool ShouldRunNow(LumenModuleRunsOnFlag currentEnv);
+        public abstract bool ShouldRunNow(LumenModuleRunsOnFlag currentEnv, DateTime date);
 
         // Setup DI/DBContext/...
         public static void SetupServices(LumenModuleRunsOnFlag currentEnv, IServiceCollection serviceCollection, string? postgresConnectionString) {
