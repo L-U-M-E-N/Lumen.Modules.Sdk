@@ -2,16 +2,10 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
 namespace Lumen.Modules.Sdk {
-    public abstract class LumenModuleBase {
-        protected readonly IEnumerable<ConfigEntry> configEntries;
-        protected readonly ILogger<LumenModuleBase> logger;
-        protected readonly IServiceProvider provider;
-
-        protected LumenModuleBase(IEnumerable<ConfigEntry> configEntries, ILogger<LumenModuleBase> logger, IServiceProvider provider) {
-            this.configEntries = configEntries;
-            this.logger = logger;
-            this.provider = provider;
-        }
+    public abstract class LumenModuleBase(IEnumerable<ConfigEntry> configEntries, ILogger<LumenModuleBase> logger, IServiceProvider provider) {
+        protected readonly IEnumerable<ConfigEntry> configEntries = configEntries;
+        protected readonly ILogger<LumenModuleBase> logger = logger;
+        protected readonly IServiceProvider provider = provider;
 
         // Standard event loop methods
         public abstract Task InitAsync(LumenModuleRunsOnFlag currentEnv);
